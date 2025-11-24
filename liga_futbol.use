@@ -229,8 +229,5 @@ context Partido inv EquipoDiferente:
 context Partido inv GolesNegativos:
     self.golesLocal >= 0 and self.golesVisitante >= 0
 
-context Jugador inv DorsalUnico:
-    self.equipo.jugadores->isUnique(dorsal)
-
 context Jornada inv JornadasPositivas:
     self.numero > 0
