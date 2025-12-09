@@ -450,6 +450,12 @@ context Equipo inv NombreEquipoUnico:
 context Estadio inv NombreEstadioUnico:
     Estadio.allInstances->forAll(e | e <> self implies e.nombre <> self.nombre)
 
+context Estadio inv PartidoContieneEstadio:
+    self.partidos->forAll(p | p.estadio = self)
+
+context Partido inv EstadioContienePartido:
+    self.estadio->notEmpty implies self.estadio.partidos->includes(self)
+
 context Partido inv MaximoJugadoresEnCampoTotal:
     -- Obtenemos todas las stats de jugadores asociadas a ESTE partido
     let statsJugadores = EstadisticaJugadorPartido.allInstances->select(s | s.partido = self) in
